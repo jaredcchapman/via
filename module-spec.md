@@ -28,8 +28,8 @@ mod main {
         // initialize the UI controller
         let aperture = Aperture::new();
 
-        // initialize the composer
-        let composer = Editor::new();
+        // initialize the editor
+        let editor = Editor::new();
 
         // initialize the conductor
         let conductor = Conductor::new();
