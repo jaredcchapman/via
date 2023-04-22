@@ -1,4 +1,4 @@
-## 0. Main Module
+# 0. Main Module
 
 Obligatory ascii ui diagram
 
@@ -284,7 +284,7 @@ fn execute_command(command: &str) {
 
 
 
-# 5. Database
+## 5. Database
 
 CRUDs Doc and Block nodes Backlined in a graph database
 
@@ -359,7 +359,7 @@ fn get_all_nodes(database: &GraphDatabase) -> Vec<Node> {
 
 
 
-# 6. Backlink
+## 6. Backlink
 
 Relates nodes in the Database (aka an edge)
 
