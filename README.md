@@ -36,7 +36,7 @@ This sidesteps the many myths and malpractices of the copy swamp and keeps its u
 
 **Doc**: Collection of Blocks arranged in a Tree Heirarchy. Has unique ID.
 
-**Block**: Base unit of via. String of text. Has unique ID.
+**Block**: Base unit of via contains: string of text and Backlinks. Has unique ID.
 
 **Backlink**: References unique ID of Doc [[Doc Ref]] and Block ((Block Ref)). 
 
