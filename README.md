@@ -18,7 +18,7 @@ Once complete export as `.txt`  and convert to the format necessary for publicat
 
 ## Designed to last
 
-By design via has a disciplined learning curve that is clear and accessible. Not cryptic and insufferable.
+Via is designed to be clear and accessible. Not cryptic and insufferable.
 
 Via is not puritanical. The minimalist parent of plethora "distraction-free" apps.
 
