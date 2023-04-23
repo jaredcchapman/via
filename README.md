@@ -7,13 +7,21 @@ Rough draft of modules + pseudocode here: https://github.com/jaredcchapman/via/b
 
 ## Designed for experts
 
-A writer has many tasks: gather, arrange, compose, edit. Expert writers understand this. (Amateurs do not.) 
+A writer has many tasks: gather, arrange, compose, edit. Expert writers understand this. 
 
-These tasks require flexible focus and an eye to discern which move the writing forward and which are mere distraction.  (The amateur is expert at distraction.)
+(Amateurs do not.) 
 
-The expert values preparation and order. Arranges material and tools, like a chef, mise en place. Fits tool to task to completion. Consistently. (The amateur switches tool and task ad nauseum.)
+These tasks require flexible focus and an eye to discern which move the writing forward and which are mere distraction.
 
-Via assists the expert: gather, arrange, compose and edit material with a unified set of simple tools. Concept to manuscript. Export as `.txt` and convert to the format necessary for publication. On to the next one. (Amateurs fret most about this step. Most never reach it.)
+(The amateur is expert at distraction.)
+
+The expert values preparation and order. Arranges material and tools, like a chef, mise en place. Fits tool to task to completion. Consistently. 
+
+(The amateur switches tool and task ad nauseum.)
+
+Via assists the expert: gather, arrange, compose and edit material with a unified set of simple tools. Concept to manuscript. Export as `.txt` and convert to the format necessary for publication. On to the next one. 
+
+(Amateurs fret most about this step. Most never reach it.)
 
 
 ## Designed to last
@@ -24,7 +32,9 @@ Via is not puritanical. The minimalist parent of plethora "distraction-free" app
 
 Via is not extensible. The maximalist progenitor of feature-bloat absurdity.
 
-This sidesteps the many myths and malpractices of the copy swamp and keeps its userbase concise and expert. (For the amateur there's ChatGPT.)
+This sidesteps the many myths and malpractices of the copy swamp and keeps its userbase concise and expert. 
+
+(For the amateur there's ChatGPT.)
 
 
 ## Overview
