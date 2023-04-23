@@ -4,28 +4,37 @@ Simple cli tools for expert writers, written in Rust.
 
 Rough draft of modules + pseudocode here: https://github.com/jaredcchapman/via/blob/main/module-spec.md
 
+
 ## Designed for experts
 
-A writer has many tasks: gather, arrange, compose, edit. These tasks require flexible focus and an eye to determine which move the writing forward. And which are mere distraction.
+A writer has many tasks: gather, arrange, compose, edit. Expert writers understand this. 
 
-Expert writers understand this. (Amateurs do not.) 
+(Amateurs do not.) 
 
-The expert values preparation and order. Arranges his material and tools, like a chef, mise en place. Determines the task to work on and fits tool to task to completion. Consistently. (The amateur, expert at distraction, does not.)
+These tasks require flexible focus and an eye to discern which move the writing forward and which are mere distraction.
 
-Via assists the expert gather, arrange, compose and edit his material. Concept to manuscript.
+(The amateur is expert at distraction.)
 
-Once complete export as `.txt`  and convert to the format necessary for publication. On to the next one. (Amateurs worry most about this step. Most never reach it.)
+The expert values preparation and order. Arranges material and tools, like a chef, mise en place. Fits tool to task to completion. 
+
+(The amateur switches tool and task ad nauseum.)
+
+Via assists the expert: gather, arrange, compose and edit material with a unified set of simple tools. Concept to manuscript. Export as `.txt` and convert to the format necessary for publication. On to the next one. 
+
+(Amateurs fret most about this step. Most never reach it.)
+
 
 ## Designed to last
 
-By design via has a disciplined learning curve that is clear and accessible. Not cryptic and insufferable.
+Via is designed to be clear and accessible. Not cryptic and insufferable.
 
 Via is not puritanical. The minimalist parent of plethora "distraction-free" apps.
 
 Via is not extensible. The maximalist progenitor of feature-bloat absurdity.
 
-This sidesteps the many myths and malpractices of the copy swamp and keeps its userbase concise and elite. (For everyone else there's ChatGPT.)
+This sidesteps the many myths and malpractices of the copy swamp and keeps its userbase concise and expert. 
 
+(For the amateur there's ChatGPT.)
 
 
 ## Overview
@@ -36,7 +45,7 @@ This sidesteps the many myths and malpractices of the copy swamp and keeps its u
 
 **Doc**: Collection of Blocks arranged in a Tree Heirarchy. Has unique ID.
 
-**Block**: Base unit of via. String of text. Has unique ID.
+**Block**: Base unit of via contains: string of text and Backlinks. Has unique ID.
 
 **Backlink**: References unique ID of Doc [[Doc Ref]] and Block ((Block Ref)). 
 
