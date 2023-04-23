@@ -60,7 +60,7 @@ via - Main view
 |#ARCHIVE  | -Block with  +PROMPT--|
 | #Doc     |  [[Doc Ref]] |dd-mm-yy|
 |!TRASH    | -Block with  |-Block  |
-| !Doc     | ((Blk Ref))  |:command|
+| !Doc     |  ((Blk Ref)) |:command|
 +-CONDUCTOR---------------+--------+
 |@USR/ DB/ Doc / Block... |...    >|
 ------------------------------------ 
