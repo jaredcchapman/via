@@ -15,7 +15,7 @@ These tasks require flexible focus and an eye to discern which move the writing 
 
 (The amateur is expert at distraction.)
 
-The expert values preparation and order. Arranges material and tools, like a chef, mise en place. Fits tool to task to completion. Consistently. 
+The expert values preparation and order. Arranges material and tools, like a chef, mise en place. Fits tool to task to completion. 
 
 (The amateur switches tool and task ad nauseum.)
 
