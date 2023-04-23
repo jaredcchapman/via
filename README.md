@@ -12,7 +12,7 @@ Expert writers understand this. (Amateurs do not.)
 
 The expert values preparation and order. Arranges his material and tools, like a chef, mise en place. Determines the task to work on and fits tool to task to completion. Consistently. (The amateur, expert at distraction, does not.)
 
-Via assists the expert gather, arrange, compose and edit his material. Concept to manuscript.
+Via assists the expert: gather, arrange, compose and edit material. Concept to manuscript.
 
 Once complete export as `.txt`  and convert to the format necessary for publication. On to the next one. (Amateurs worry most about this step. Most never reach it.)
 
