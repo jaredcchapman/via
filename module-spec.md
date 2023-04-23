@@ -3,21 +3,21 @@
 Obligatory ascii ui diagram
 
 ```
-via - simple cli tools for expert writers
+via - Main view
 
 +INDEX-----+COMPOSER----- +QUEUE---|
 |~ALL      |-Doc          |-Block  |
 | ~Doc     | -Block       | -Child |
 |*STAR     |  -Child      |+Block..|
-| *Doc     |+Block ...    |        |
-|#ARCHIVE  |-Block with   +PROMPT--|
-| #Doc     | a [[Doc Ref]]|dd-mm-yy|
-|!TRASH    |-Block with   |-Block  |
-| !Doc     | a ((Blk Ref))|:command|
+| *Doc     | +Block ...   |        |
+|#ARCHIVE  | -Block with  +PROMPT--|
+| #Doc     |  [[Doc Ref]] |dd-mm-yy|
+|!TRASH    | -Block with  |-Block  |
+| !Doc     | ((Blk Ref))  |:command|
 +-CONDUCTOR---------------+--------+
 |@USR/ DB/ Doc / Block... |...    >|
 ------------------------------------ 
-```
+``` 
 
 ```rust
 mod main {
