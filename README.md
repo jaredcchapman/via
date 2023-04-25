@@ -39,6 +39,8 @@ This sidesteps the many myths and malpractices of the copy swamp and keeps its u
 
 ## Overview
 
+### Database
+
 **User**: Create, read, update delete Databases.
 
 **Database**: Create, read, update delete Docs and Blocks in a graph database.
@@ -61,10 +63,12 @@ via - Main view
 | #Doc     |  [[Doc Ref]] |dd-mm-yy|
 |!TRASH    | -Block with  |-Block  |
 | !Doc     |  ((Blk Ref)) |:command|
-+-CONDUCTOR---------------+--------+
++CONDUCTOR----------------+--------+
 |@USR/ DB/ Doc / Block... |...    >|
 ------------------------------------ 
 ``` 
+
+### Interface
 
 **Index**: Create, read, update, delete Docs in current Database.
 
