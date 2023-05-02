@@ -14,47 +14,41 @@ via - Main view
 | #Doc     |  [[Doc Ref]] |dd-mm-yy|
 |!TRASH    | -Block with  |-Block  |
 | !Doc     |  ((Blk Ref)) |:command|
-+-CONDUCTOR---------------+--------+
++CONDUCTOR----------------+--------+
 |@USR/ DB/ Doc / Block... |...    >|
 ------------------------------------ 
 ``` 
 
 ```rust
-mod main {
-    fn main() {
-        // initialize the database
-        let database = Database::new();
-
-        // initialize the UI controller
-        let aperture = Aperture::new();
-
-        // initialize the editor
-        let editor = Editor::new();
-
-        // initialize the conductor
-        let conductor = Conductor::new();
-
-        // initialize the user account and settings
-        let user = User::new();
-
-        // initialize the index
-        let index = Index::new(database);
-
-        // initialize the prompt ledger
-        let prompt_ledger = PromptLedger::new();
-
-        // initialize the queue
-        let queue = Queue::new();
-
-        // run the main event loop
-        aperture.get_input_stream()
-            .map(|input| conductor.parse_input(input))
-            .map(|result| match result {
-                Ok(command) => command.execute(),
-                Err(error) => Err(error.to_string()),
-            })
-            .map(|result| aperture.display_output(result.unwrap_or_else(|error| error)))
-            .for_each(drop);
+fn main() {
+    // initialize modules
+    let mut user = User::new();
+    let mut editor = Editor::new();
+    let mut aperture = Aperture::new();
+    let mut conductor = Conductor::new();
+    let mut database = Database::new();
+    let mut backlink = Backlink::new();
+    let mut index = Index::new();
+    let mut composer = Composer::new();
+    let mut queue = Queue::new();
+    let mut prompt = Prompt::new();
+    
+    // start the main loop
+    loop {
+        // get user input
+        let input = get_user_input();
+        
+        // execute command based on input
+        match conductor.execute_command(&input, &mut user, &mut editor, &mut aperture, &mut database, &mut backlink, &mut index, &mut composer, &mut queue, &mut prompt) {
+            Ok(output) => {
+                // display output to user
+                display_output(output);
+            }
+            Err(error) => {
+                // display error to user
+                display_error(error);
+            }
+        }
     }
 }
 ```
@@ -64,56 +58,37 @@ mod main {
 ```rust
 // MODULE: USER
 
-// struct to represent a user's account
-struct UserAccount {
-    id: u32,                // unique identifier for the user account
-    name: String,           // name of the user
+// Struct representing a User
+struct User {
+    id: u32,
+    name: String,
+    email: String,
+    password: String,
 }
 
-// struct to represent user settings
-struct UserSettings {
-    font_size: u8,          // preferred font size for the editor
-    theme: String,          // preferred theme for the editor
-    language: String,       // preferred language for the editor
-    // add any additional settings here
+// Implementation of CRUD operations for the User struct
+impl User {
+    fn create(user: User) -> Result<(), String> {
+        // code to create a new user
+        Ok(())
+    }
+    
+    fn read(id: u32) -> Result<User, String> {
+        // code to read a user by ID
+        Err("User not found".to_string())
+    }
+    
+    fn update(user: User) -> Result<(), String> {
+        // code to update an existing user
+        Ok(())
+    }
+    
+    fn delete(id: u32) -> Result<(), String> {
+        // code to delete a user by ID
+        Ok(())
+    }
 }
 
-// function to create a new user account
-fn create_user(name: String, email: String, password: String) -> UserAccount {
-    // validate input and generate unique id
-    // hash password and store new user account in database
-}
-
-// function to read user account information
-fn read_user(id: u32) -> UserAccount {
-    // retrieve user account from database and return it
-}
-
-// function to update user account information
-fn update_user(id: u32, updates: UserAccount) -> UserAccount {
-    // retrieve user account from database
-    // update specified fields and save changes
-    // return updated user account
-}
-
-// function to delete user account
-fn delete_user(id: u32) -> bool {
-    // retrieve user account from database
-    // delete user account from database and return success/failure status
-}
-
-// function to read user settings
-fn read_settings(id: u32) -> UserSettings {
-    // retrieve user account from database
-    // return settings object from user account
-}
-
-// function to update user settings
-fn update_settings(id: u32, updates: UserSettings) -> UserSettings {
-    // retrieve user account from database
-    // update settings fields and save changes
-    // return updated settings object
-}
 ```
 
 
@@ -124,66 +99,53 @@ Robust text editor with full keyboard and mouse support and advanced functions: 
 ```rust
 // MODULE: EDITOR
 
-// struct to represent the editor
+// Struct representing the Editor
 struct Editor {
-    cursor_pos: (usize, usize),   // current cursor position (row, column)
-    text: String,                // full text content of the editor
-    selected_text: Option<String>, // optional selected text in the editor
-    settings: EditorSettings      // settings object for the editor
+    buffer: String,
 }
 
-// struct to represent editor settings
-struct EditorSettings {
-    font_size: u8,              // font size of the editor
-    theme: String,              // color scheme of the editor
-    language: String,           // programming language of the text (if applicable)
-    // add any additional settings here
+// Implementation of Editor functions
+impl Editor {
+    fn new() -> Self {
+        // code to initialize a new Editor
+        Editor {
+            buffer: String::new(),
+        }
+    }
+    
+    fn insert(&mut self, c: char) {
+        // code to insert a character into the buffer
+    }
+    
+    fn delete(&mut self) {
+        // code to delete the character before the cursor
+    }
+    
+    fn move_cursor_left(&mut self) {
+        // code to move the cursor left
+    }
+    
+    fn move_cursor_right(&mut self) {
+        // code to move the cursor right
+    }
+    
+    fn move_cursor_up(&mut self) {
+        // code to move the cursor left
+    }
+    
+    fn move_cursor_down(&mut self) {
+        // code to move the cursor right
+    }
+    
+    fn autocomplete(&mut self) {
+        // code to suggest and insert autocompletion
+    }
+    
+    fn autowrap(&mut self) {
+        // code to automatically wrap text
+    }
 }
 
-// function to create a new editor instance
-fn create_editor() -> Editor {
-    // create new editor object with default settings and empty text
-}
-
-// function to read editor content
-fn read_text(editor: &Editor) -> String {
-    // return full text content of the editor
-}
-
-// function to update editor content
-fn update_text(editor: &mut Editor, new_text: String) {
-    // update text content of the editor with new text
-}
-
-// function to read selected text
-fn read_selected_text(editor: &Editor) -> Option<String> {
-    // return optional selected text in the editor (if any)
-}
-
-// function to update selected text
-fn update_selected_text(editor: &mut Editor, new_selected_text: Option<String>) {
-    // update selected text in the editor with new selected text (if any)
-}
-
-// function to read cursor position
-fn read_cursor_pos(editor: &Editor) -> (usize, usize) {
-    // return current cursor position in the editor
-}
-
-// function to update cursor position
-fn update_cursor_pos(editor: &mut Editor, new_pos: (usize, usize)) {
-    // update cursor position in the editor with new position
-}
-
-// function to read editor settings
-fn read_settings(editor: &Editor) -> EditorSettings {
-    // return settings object for the editor
-}
-
-// function to update editor settings
-fn update_settings(editor: &mut Editor, new_settings: EditorSettings) {
-    // update settings object for the editor with new settings
-}
 ```
 
 
@@ -195,60 +157,31 @@ UI controller that hides and reveals parts of the UI with full keyboard and mous
 ```rust
 // MODULE: APERTURE
 
-// struct to represent the UI controller
-struct UIController {
-    focus: Option<UIElement>,   // currently focused UI element (if any)
-    hidden_elements: Vec<UIElement>, // list of hidden UI elements
-    revealed_elements: Vec<UIElement> // list of revealed UI elements
+// Struct representing the Aperture
+struct Aperture {
+    hidden_sections: Vec<bool>,
 }
 
-// enum to represent UI elements
-enum UIElement {
-    Editor,     // text editor component
-    Sidebar,    // sidebar component
-    Menu,       // menu component
-    // add any additional UI elements here
+// Implementation of Aperture functions
+impl Aperture {
+    fn new() -> Self {
+        // code to initialize a new Aperture
+        Aperture {
+            hidden_sections: vec![false; num_sections],
+        }
+    }
+    
+    fn toggle_section(&mut self, section_index: usize) {
+        // code to toggle the visibility of a section
+        self.hidden_sections[section_index] = !self.hidden_sections[section_index];
+    }
+    
+    fn is_section_hidden(&self, section_index: usize) -> bool {
+        // code to check if a section is hidden
+        self.hidden_sections[section_index]
+    }
 }
 
-// function to hide a UI element
-fn hide_element(controller: &mut UIController, element: UIElement) {
-    // hide the specified UI element and add it to the hidden_elements list
-}
-
-// function to reveal a UI element
-fn reveal_element(controller: &mut UIController, element: UIElement) {
-    // reveal the specified UI element and add it to the revealed_elements list
-}
-
-// function to set focus on a UI element
-fn set_focus(controller: &mut UIController, element: UIElement) {
-    // set the specified UI element as the currently focused element
-}
-
-// function to remove focus from a UI element
-fn remove_focus(controller: &mut UIController) {
-    // remove focus from the currently focused UI element
-}
-
-// function to toggle the visibility of a UI element
-fn toggle_visibility(controller: &mut UIController, element: UIElement) {
-    // if the specified UI element is hidden, reveal it, and vice versa
-}
-
-// function to get the currently focused UI element
-fn get_focused_element(controller: &UIController) -> Option<UIElement> {
-    // return the currently focused UI element (if any)
-}
-
-// function to get a list of all hidden UI elements
-fn get_hidden_elements(controller: &UIController) -> Vec<UIElement> {
-    // return a list of all hidden UI elements
-}
-
-// function to get a list of all revealed UI elements
-fn get_revealed_elements(controller: &UIController) -> Vec<UIElement> {
-    // return a list of all revealed UI elements
-}
 ```
 
 
@@ -260,26 +193,38 @@ Navigate, Search, Commands
 ```rust
 // MODULE: CONDUCTOR
 
-// function to navigate between UI elements
-fn navigate(controller: &mut UIController, direction: NavigationDirection) {
-    // navigate to the next or previous UI element in the specified direction
+// Struct representing the Conductor
+struct Conductor {
+    current_doc_id: Option<u32>,
+    cursor_pos: usize,
 }
 
-// enum to represent the navigation direction
-enum NavigationDirection {
-    Forward,    // navigate forward
-    Backward    // navigate backward
+// Implementation of Conductor functions
+impl Conductor {
+    fn new() -> Self {
+        // code to initialize a new Conductor
+        Conductor {
+            current_doc_id: None,
+            cursor_pos: 0,
+        }
+    }
+    
+    fn navigate_to_doc(&mut self, doc_id: u32) -> Result<(), String> {
+        // code to navigate to a specified document
+        Ok(())
+    }
+    
+    fn search(&self, query: &str) -> Vec<u32> {
+        // code to search for documents or blocks matching a query
+        vec![]
+    }
+    
+    fn execute_command(&self, command: &str) -> Result<(), String> {
+        // code to execute a command
+        Ok(())
+    }
 }
 
-// function to search for text in the document
-fn search(text: &str) {
-    // search for the specified text in the document
-}
-
-// function to execute a command
-fn execute_command(command: &str) {
-    // execute the specified command
-}
 ```
 
 
@@ -290,71 +235,63 @@ CRUDs Doc and Block nodes Backlined in a graph database
 
 ```rust
 // MODULE: DATABASE
-
-// struct to represent the graph database
-struct GraphDatabase {
-    nodes: Vec<Node>,   // list of nodes in the database
-    edges: Vec<Edge>    // list of edges in the database
+// Struct representing the Database
+struct Database {
+    nodes: HashMap<u32, Node>,
 }
 
-// struct to represent a node in the database
+// Struct representing a Node in the Database
 struct Node {
-    id: u64,    // unique identifier for the node
-    data: Block,    // the block of text associated with the node
+    doc_id: Option<u32>,
+    block_id: Option<u32>,
+    backlinks: Vec<u32>,
 }
 
-// struct to represent an edge in the database
-struct Edge {
-    from_node_id: u64,  // the ID of the node the edge starts from
-    to_node_id: u64,    // the ID of the node the edge goes to
+// Implementation of Database functions
+impl Database {
+    fn new() -> Self {
+        // code to initialize a new Database
+        Database {
+            nodes: HashMap::new(),
+        }
+    }
+    
+    fn get_node(&self, node_id: u32) -> Option<&Node> {
+        // code to get a node by its ID
+        self.nodes.get(&node_id)
+    }
+    
+    fn create_doc(&mut self, doc_id: u32) -> Result<(), String> {
+        // code to create a new document node
+        Ok(())
+    }
+    
+    fn create_block(&mut self, block_id: u32, parent_id: u32) -> Result<(), String> {
+        // code to create a new block node and link it to its parent node
+        Ok(())
+    }
+    
+    fn update_node(&mut self, node_id: u32, new_node: Node) -> Result<(), String> {
+        // code to update a node with new data
+        Ok(())
+    }
+    
+    fn delete_node(&mut self, node_id: u32) -> Result<(), String> {
+        // code to delete a node and all its backlinks
+        Ok(())
+    }
+    
+    fn add_backlink(&mut self, source_id: u32, target_id: u32) -> Result<(), String> {
+        // code to add a new backlink between two nodes
+        Ok(())
+    }
+    
+    fn remove_backlink(&mut self, source_id: u32, target_id: u32) -> Result<(), String> {
+        // code to remove a backlink between two nodes
+        Ok(())
+    }
 }
 
-// struct to represent a block of text
-struct Block {
-    id: u64,        // unique identifier for the block
-    text: String,   // the text content of the block
-    children: Vec<Block>,   // list of child blocks (if any)
-}
-
-// function to create a new node in the database
-fn create_node(database: &mut GraphDatabase, data: Block) -> Node {
-    // create a new node with the specified block of text and add it to the database
-}
-
-// function to read a node from the database
-fn read_node(database: &GraphDatabase, node_id: u64) -> Option<Node> {
-    // return the node with the specified ID (if it exists)
-}
-
-// function to update a node in the database
-fn update_node(database: &mut GraphDatabase, node_id: u64, data: Block) -> Option<Node> {
-    // update the node with the specified ID with the new block of text (if it exists)
-}
-
-// function to delete a node from the database
-fn delete_node(database: &mut GraphDatabase, node_id: u64) -> Option<Node> {
-    // delete the node with the specified ID (if it exists) and all edges associated with it
-}
-
-// function to create a new edge in the database
-fn create_edge(database: &mut GraphDatabase, from_node_id: u64, to_node_id: u64) -> Edge {
-    // create a new edge from the node with the from_node_id to the node with the to_node_id and add it to the database
-}
-
-// function to read an edge from the database
-fn read_edge(database: &GraphDatabase, from_node_id: u64, to_node_id: u64) -> Option<Edge> {
-    // return the edge from the node with the from_node_id to the node with the to_node_id (if it exists)
-}
-
-// function to delete an edge from the database
-fn delete_edge(database: &mut GraphDatabase, from_node_id: u64, to_node_id: u64) -> Option<Edge> {
-    // delete the edge from the node with the from_node_id to the node with the to_node_id (if it exists)
-}
-
-// function to get all the nodes in the database
-fn get_all_nodes(database: &GraphDatabase) -> Vec<Node> {
-    // return a list of all nodes in the database
-}
 ```
 
 
@@ -562,53 +499,74 @@ mod index {
 }
 ```
 
-## 10. Queue
-
-CRUDs "when queued" Positions in Queue Register; Queue to add a Block (with children) to next position in Queue Register; Unqueue to remove block from Queue Register; Blocks are queued ad hoc: from one or multiple Docs; Queuing does not move a Block from its Doc of origin; Queued Blocks retain normal block behavior.
+## 10. Composer
 
 ```rust
-mod queue {
-    struct Queue {
-        register: Vec<BlockId>,
+// Struct representing a Composer
+struct Composer {
+    current_doc_id: u32,
+    current_block_id: u32,
+}
+
+// Implementation of Composer functions
+impl Composer {
+    fn new() -> Self {
+        Composer { current_doc_id: 0, current_block_id: 0 }
     }
-
-     impl Queue {
-        fn create() -> Result<Self, Error> {
-            // create a new empty queue
-        }
-
-        fn read() -> Result<Self, Error> {
-            // read the current queue
-        }
-
-        fn add_block(&mut self, block_id: BlockId) -> Result<(), Error> {
-            // add a new block to the end of the queue
-        }
-
-        fn remove_block(&mut self, block_id: BlockId) -> Result<(), Error> {
-            // remove the given block from the queue
-        }
-
-        fn move_block(&mut self, block_id: BlockId, position: usize) -> Result<(), Error> {
-            // move the given block to the given position in the queue
-        }
-
-        fn get_next_block(&mut self) -> Option<BlockId> {
-            // return the next block in the queue (and remove it from the queue)
-        }
-
-        fn get_all_blocks(&self) -> Vec<BlockId> {
-            // return all of the blocks in the queue
-        }
-
-        fn clear(&mut self) -> Result<(), Error> {
-            // remove all blocks from the queue
-        }
+    
+    fn set_current_doc(&mut self, id: u32) {
+        self.current_doc_id = id;
+    }
+    
+    fn set_current_block(&mut self, id: u32) {
+        self.current_block_id = id;
+    }
+    
+    fn get_current_block(&self) -> Option<&Block> {
+        self.get_current_doc().and_then(|doc| doc.blocks.get(&self.current_block_id))
+    }
+    
+    fn get_current_doc(&self) -> Option<&Doc> {
+        self.index.docs.get(&self.current_doc_id)
     }
 }
 ```
 
-## 11. Prompt
+## 11. Queue
+
+CRUDs "when queued" Positions in Queue Register; Queue to add a Block (with children) to next position in Queue Register; Unqueue to remove block from Queue Register; Blocks are queued ad hoc: from one or multiple Docs; Queuing does not move a Block from its Doc of origin; Queued Blocks retain normal block behavior.
+
+```rust
+// Struct representing a Queue
+struct Queue {
+    blocks: Vec<Block>,
+}
+
+// Implementation of Queue functions
+impl Queue {
+    fn new() -> Self {
+        Queue { blocks: Vec::new() }
+    }
+    
+    fn add_block(&mut self, block: Block) {
+        self.blocks.push(block);
+    }
+    
+    fn remove_block(&mut self, index: usize) -> Result<(), String> {
+        if index >= self.blocks.len() {
+            return Err(String::from("Index out of range"));
+        }
+        self.blocks.remove(index);
+        Ok(())
+    }
+    
+    fn clear(&mut self) {
+        self.blocks.clear();
+    }
+}
+```
+
+## 12. Prompt
 
 Creates, Reads, Deletes childless, immutable Blocks in Prompt Ledger; Orders Blocks under "Day Created" subtrees; Blocks here are not subtrees, do not have children. Input with `:` command prefix will execute commands from Conductor Module.
 
@@ -642,7 +600,7 @@ mod prompt {
 }
 ```
 
-## 12. BONUS: viasync.com
+## 13. BONUS: viasync.com
 
 Stripped down, wicked fast web-repo to backup and sync local via database.
 
