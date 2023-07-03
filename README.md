@@ -1,57 +1,51 @@
-# via
+# via - simple cli tools for serious writers
 
-Simple cli tools for expert writers, written in Rust.
+Serious writing involves many tasks: gathering, arranging and editing material.
 
-Rough draft of modules + pseudocode here: https://github.com/jaredcchapman/via/blob/main/module-spec.md
+These tasks require different kinds of attention: gathering is open and exploratory, arranging is insightful and deliberate, editing is closed and decisive.
 
+At any moment the writer must determine which task will move the writing forward and what is mere distraction — then direct their attention to the right material, with the right tool. 
 
-## Designed for experts
+The serious writer understands this. The amateur does not.
 
-A writer has many tasks: gather, arrange, compose, edit. Expert writers understand this. 
+Via provides the serious writer with a unified set of simple tools in an interface that adapts to the task at hand: gather, arrange and edit your material — from raw concept to final composition.
 
-(Amateurs do not.) 
+# Features
 
-These tasks require flexible focus and an eye to discern which move the writing forward and which are mere distraction.
+Block: every line of text is a unique block that can reference any other block or doc.
 
-(The amateur is expert at distraction.)
+Doc: all blocks live in a doc, but are not limited to that doc.
 
-The expert values preparation and order. Arranges material and tools, like a chef, mise en place. Fits tool to task to completion. 
+Database: all docs and blocks live in a graph database.
 
-(The amateur switches tool and task ad nauseum.)
+Index: organizes docs into groups All, Star, Archive, Trash.
 
-Via assists the expert: gather, arrange, compose and edit material with a unified set of simple tools. Concept to manuscript. Export as `.txt` and convert to the format necessary for publication. On to the next one. 
+Composer: main text editor arranges blocks in a doc as a nested tree.
 
-(Amateurs fret most about this step. Most never reach it.)
+Prompt: captures notes quickly, like chat, orders them in blocks chronologically.
 
+Queue: queues blocks ad hoc, like a playlist, doesn't matter which doc they're from.
 
-## Designed to last
+Conductor: Universal search and navigation. Go anywhere. Find anything.
 
-Via is designed to be clear and accessible. Not cryptic and insufferable.
+Aperture: Universal toggle that shows or hides anything. Focus on the task at hand.
 
-Via is not puritanical. The minimalist parent of plethora "distraction-free" apps.
+Note: via's design owes credit to many text editors but is not intended to duplicate productivity or programming paradigms (e.g., zettlekasten, pkm, gtd, vim, emacs etc).
 
-Via is not extensible. The maximalist progenitor of feature-bloat absurdity.
+# Technical Overview
 
-This sidesteps the many myths and malpractices of the copy swamp and keeps its userbase concise and expert. 
+## Database
 
-(For the amateur there's ChatGPT.)
+User: Create, read, update delete Databases.
 
+Database: Create, read, update delete Docs and Blocks in a graph database.
 
-## Overview
+Doc: Collection of Blocks arranged in a Tree Heirarchy. Has unique ID.
 
-### Database
+Block: Base unit of via contains: string of text and Backlinks. Has unique ID.
 
-**User**: Create, read, update delete Databases.
+Backlink: References unique ID of Doc [[Doc Ref]] and Block ((Block Ref)).
 
-**Database**: Create, read, update delete Docs and Blocks in a graph database.
-
-**Doc**: Collection of Blocks arranged in a Tree Heirarchy. Has unique ID.
-
-**Block**: Base unit of via contains: string of text and Backlinks. Has unique ID.
-
-**Backlink**: References unique ID of Doc [[Doc Ref]] and Block ((Block Ref)). 
-
-```
 via - Main view
 
 +INDEX-----+COMPOSER----- +QUEUE---|
@@ -66,16 +60,17 @@ via - Main view
 +CONDUCTOR----------------+--------+
 |@USR/ DB/ Doc / Block... |...    >|
 ------------------------------------ 
-``` 
 
-### Interface
+# Interface
 
-**Index**: Create, read, update, delete Docs in current Database.
+Index: Create, read, update, delete Docs in current Database.
 
-**Composer**: Create, read, update, delete blocks in current Doc tree.
+Composer: Create, read, update, delete blocks in current Doc tree.
 
-**Queue**: Read, update, delete existing Blocks from multiple locations, ad hoc. Arranged in order queued.
+Queue: Read, update, delete existing Blocks from multiple locations, ad hoc. Arranged in order queued.
 
-**Prompt**: Create, read, and delete immutable blocks. Arranged in order created.
+Prompt: Create, read, and delete immutable blocks. Arranged in order created.
 
-**Conductor**: Navigate, Search and execute Commands.
+Conductor: Navigate, Search and execute Commands.
+
+Aperture: Show or hide interface elements.
