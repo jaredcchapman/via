@@ -46,6 +46,7 @@ Block: Base unit of via contains: string of text and Backlinks. Has unique ID.
 
 Backlink: References unique ID of Doc [[Doc Ref]] and Block ((Block Ref)).
 
+```
 via - Main view
 
 +INDEX-----+COMPOSER----- +QUEUE---|
@@ -60,6 +61,7 @@ via - Main view
 +CONDUCTOR----------------+--------+
 |@USR/ DB/ Doc / Block... |...    >|
 ------------------------------------ 
+```
 
 # Interface
 
